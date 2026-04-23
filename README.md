@@ -14,6 +14,18 @@ Each transaction creates a new version, allowing queries on past states, compari
 
 ---
 
+## 🔤 Notation
+
+- n = number of accounts  
+- ai = initial balances  
+- q = number of transactions  
+- from → to → amount = transfer money  
+- k = number of queries  
+- version = which version to query  
+- l, r = range of accounts
+
+---
+
 ## ⚙️ Complexity
 - Update: O(log n)
 - Query: O(log n)
