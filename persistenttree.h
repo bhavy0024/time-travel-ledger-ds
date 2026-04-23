@@ -15,3 +15,21 @@ Node* build(vector<int> &arr, int l, int r)
     root->right = right;
     return root;
 }
+Node* update(Node* prev, int l, int r, int idx, int value)
+{
+    if (l == r) return new Node(value);
+    int mid = (l + r) / 2;
+    Node* root = new Node(0);
+    if (idx <= mid)
+    {
+        root->left = update(prev->left, l, mid, idx, value);
+        root->right = prev->right;
+    }
+    else
+    {
+        root->left = prev->left;
+        root->right = update(prev->right, mid + 1, r, idx, value);
+    }
+    root->val = root->left->val + root->right->val;
+    return root;
+}
