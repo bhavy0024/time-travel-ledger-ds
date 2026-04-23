@@ -1,3 +1,7 @@
+#ifndef PERSISTENT_TREE_H
+#define PERSISTENT_TREE_H
+#include <bits/stdc++.h>
+using namespace std;
 struct Node {
     int val;
     Node* left;
@@ -42,6 +46,11 @@ int query(Node* root, int l, int r, int ql, int qr)
 }
 Node* transaction(Node* prev, int n, int from, int to, int amount)
 {
+    if (from < 0 || from >= n || to < 0 || to >= n)
+    {
+        cout << "Invalid accounts\n";
+        return prev;
+    }
     int bf = query(prev, 0, n - 1, from, from);
     int bt = query(prev, 0, n - 1, to, to);
     if (bf < amount)
