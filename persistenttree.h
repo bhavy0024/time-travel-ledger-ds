@@ -33,3 +33,10 @@ Node* update(Node* prev, int l, int r, int idx, int value)
     root->val = root->left->val + root->right->val;
     return root;
 }
+int query(Node* root, int l, int r, int ql, int qr)
+{
+    if (qr < l || r < ql) return 0;
+    if (ql <= l && r <= qr) return root->val;
+    int mid = (l + r) / 2;
+    return query(root->left, l, mid, ql, qr) + query(root->right, mid + 1, r, ql, qr);
+}
