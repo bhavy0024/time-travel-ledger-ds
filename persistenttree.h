@@ -68,9 +68,10 @@ void detectfraud(Node* prev, Node* curr, int n)
     {
         int a = query(prev, 0, n - 1, i, i);
         int b = query(curr, 0, n - 1, i, i);
-        if (llabs(b - a) > 2000)
+        if (abs(b - a) > 2000)
         {
             cout << "Fraud alert at account " << i << "\n";
         }
     }
 }
+#endif
