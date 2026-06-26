@@ -64,14 +64,46 @@ Node* transaction(Node* prev, int n, int from, int to, int amount)
 }
 void detectfraud(Node* prev, Node* curr, int n)
 {
+    vector<long long> oldVal(n), newVal(n);
+    long long sumOld = 0;
     for (int i = 0; i < n; i++)
     {
-        int a = query(prev, 0, n - 1, i, i);
-        int b = query(curr, 0, n - 1, i, i);
-        if (abs(b - a) > 2000)
+        oldVal[i] = query(prev, 0, n - 1, i, i);
+        newVal[i] = query(curr, 0, n - 1, i, i);
+        sumOld += oldVal[i];
+    }
+    long double meanOld = sumOld / (long double)n;
+    long double var = 0;
+    for (int i = 0; i < n; i++)
+    {
+        long double diff = newVal[i] - meanOld;
+        var += diff * diff;
+    }
+    long double stddev = sqrt(var / n);
+    bool flag = false;
+    for (int i = 0; i < n; i++)
+    {
+        long long diff = llabs(newVal[i] - oldVal[i]);
+        if (diff > 2000)
         {
-            cout << "Fraud alert at account " << i << "\n";
+            cout << "Fraud alert (spike) at account " << i << "\n";
+            flag = true;
+        }
+        if (oldVal[i] != 0 && (diff * 100.0 / oldVal[i]) > 80)
+        {
+            cout << "Fraud alert (percentage) at account " << i << "\n";
+            flag = true;
+        }
+        if (stddev > 0)
+        {
+            long double z = (newVal[i] - meanOld) / stddev;
+            if (fabsl(z) > 3)
+            {
+                cout << "Fraud alert (z-score) at account " << i << "\n";
+                flag = true;
+            }
         }
     }
+    return flag;
 }
 #endif
