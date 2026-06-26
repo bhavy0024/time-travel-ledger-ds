@@ -1,32 +1,54 @@
-# 🧾 Time-Travel Financial Ledger System
+# 💰 Persistent Financial Ledger (C++)
 
-## 🚀 Overview
-Built a version-controlled financial ledger in C++ using persistent data structures.  
-Each transaction creates a new version, allowing queries on past states, comparison between versions, and basic fraud detection.
-
----
-
-## ✨ Features
-- Versioned transactions (immutable history)
-- Time-travel queries on any past version
-- Fraud detection based on balance changes
-- Efficient memory usage using node sharing
+## 📌 Overview
+A version-controlled financial ledger built using a **Persistent Segment Tree** in C++.  
+Each transaction creates a new version, allowing historical queries and auditability.
 
 ---
 
-## 🔤 Notation
-
-- n = number of accounts  
-- ai = initial balances  
-- q = number of transactions  
-- from → to → amount = transfer money  
-- k = number of queries  
-- version = which version to query  
-- l, r = range of accounts
+## 🚀 Features
+- Versioned ledger system
+- O(log n) updates and queries
+- Historical state queries
+- Fraud detection (spike, percentage, z-score)
+- Immutable version history
 
 ---
 
-## ⚙️ Complexity
-- Update: O(log n)
-- Query: O(log n)
-- Space: O(n + q log n)
+## ⚙️ Operations
+- `txn from to amount` → transfer money & create new version  
+- `query version l r` → range sum query on a version  
+- `status` → number of versions  
+
+---
+
+## 🧠 Concepts Used
+- Persistent Segment Tree  
+- Version Control System  
+- Range Queries  
+- Fraud Detection Logic  
+
+---
+
+## 📊 Complexity
+- Update: O(log n)  
+- Query: O(log n)  
+- Space: O(n + q log n)  
+
+---
+
+## 📌 Notations Used
+
+| Symbol | Meaning |
+|--------|--------|
+| n | Number of accounts (array size) |
+| q | Number of transactions / versions |
+| log n | Height of segment tree |
+| Vᵢ | i-th version of ledger |
+| Node | Segment tree node storing sum |
+| rootᵢ | Root of i-th version |
+| l, r | Range in segment tree |
+| from, to | Accounts involved in transaction |
+| amount | Money transferred |
+
+---
