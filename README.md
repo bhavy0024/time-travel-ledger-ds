@@ -25,12 +25,13 @@ Each transaction creates a new version, allowing historical queries and auditabi
 ## 🧠 Concepts Used
 - Persistent Segment Tree  
 - Version Control System  
-- Range Queries  
+- Range Queries (Segment tree)  
 - Fraud Detection Logic  
 
 ---
 
 ## 📊 Complexity
+- Build: O(n)
 - Update: O(log n)  
 - Query: O(log n)  
 - Space: O(n + q log n)  
