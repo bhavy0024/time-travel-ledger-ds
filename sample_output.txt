@@ -1,7 +1,7 @@
-Fraud alert (spike) at account 3
-Fraud alert (percentage) at account 3
 15000
-15000
+14000
 Fraud alert (spike) at account 0
-14500
-Total versions: 4
+Fraud alert (percentage) at account 0
+Fraud alert (spike) at account 3
+5500
+Total versions: 5
